@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zekavit_MVC", "Zekavit_MVC\Zekavit_MVC.csproj", "{E8E719D5-3EBF-4567-987C-0C378E127E28}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zekavit_Shared", "Zekavit_Shared\Zekavit_Shared.csproj", "{1B77FD21-73DF-4FEE-8304-47A33AA6D4C7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E8E719D5-3EBF-4567-987C-0C378E127E28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8E719D5-3EBF-4567-987C-0C378E127E28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8E719D5-3EBF-4567-987C-0C378E127E28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8E719D5-3EBF-4567-987C-0C378E127E28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B77FD21-73DF-4FEE-8304-47A33AA6D4C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B77FD21-73DF-4FEE-8304-47A33AA6D4C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B77FD21-73DF-4FEE-8304-47A33AA6D4C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B77FD21-73DF-4FEE-8304-47A33AA6D4C7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8EB79AD2-F287-42E0-AE87-6CBDCC4E1447}
+	EndGlobalSection
+EndGlobal
