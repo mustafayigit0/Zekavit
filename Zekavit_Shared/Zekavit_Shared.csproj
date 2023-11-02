@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Include="..\Zekavit_MVC\Services\Abstract\IOrderService.cs" Link="IOrderService.cs" />
+  </ItemGroup>
+
 </Project>

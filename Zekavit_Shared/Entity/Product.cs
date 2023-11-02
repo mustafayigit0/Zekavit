@@ -26,5 +26,9 @@ namespace Zekavit_Shared.Entity
         public Category Category { get; set; }
 
         public string? ImageUrl { get; set; }
+
+        public List<ProductImage> ProductImages { get; set; }
+        public List<Feature> Features { get; set; }
+        public List<Order>  Orders { get; set; }
     }
 }

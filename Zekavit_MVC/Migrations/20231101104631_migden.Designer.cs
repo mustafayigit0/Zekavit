@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Zekavit_MVC.Areas.Identity.Data;
 
@@ -11,9 +12,11 @@ using Zekavit_MVC.Areas.Identity.Data;
 namespace Zekavit_MVC.Migrations
 {
     [DbContext(typeof(Zekavit_MVCContext))]
-    partial class Zekavit_MVCContextModelSnapshot : ModelSnapshot
+    [Migration("20231101104631_migden")]
+    partial class migden
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -153,21 +156,6 @@ namespace Zekavit_MVC.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
-                });
-
-            modelBuilder.Entity("OrderProduct", b =>
-                {
-                    b.Property<int>("OrdersOrderId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("OrdersOrderId", "ProductsId");
-
-                    b.HasIndex("ProductsId");
-
-                    b.ToTable("OrderProduct");
                 });
 
             modelBuilder.Entity("ProductProductImage", b =>
@@ -327,6 +315,9 @@ namespace Zekavit_MVC.Migrations
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("OrderId1")
+                        .HasColumnType("int");
+
                     b.Property<string>("PostalCode")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -348,6 +339,8 @@ namespace Zekavit_MVC.Migrations
 
                     b.HasKey("OrderId");
 
+                    b.HasIndex("OrderId1");
+
                     b.ToTable("Orders");
                 });
 
@@ -365,6 +358,9 @@ namespace Zekavit_MVC.Migrations
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("OrderId")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
@@ -379,6 +375,8 @@ namespace Zekavit_MVC.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("OrderId");
 
                     b.ToTable("Products");
                 });
@@ -451,21 +449,6 @@ namespace Zekavit_MVC.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("OrderProduct", b =>
-                {
-                    b.HasOne("Zekavit_Shared.Entity.Order", null)
-                        .WithMany()
-                        .HasForeignKey("OrdersOrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Zekavit_Shared.Entity.Product", null)
-                        .WithMany()
-                        .HasForeignKey("ProductsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("ProductProductImage", b =>
                 {
                     b.HasOne("Zekavit_Shared.Entity.ProductImage", null)
@@ -492,6 +475,13 @@ namespace Zekavit_MVC.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("Zekavit_Shared.Entity.Order", b =>
+                {
+                    b.HasOne("Zekavit_Shared.Entity.Order", null)
+                        .WithMany("Orders")
+                        .HasForeignKey("OrderId1");
+                });
+
             modelBuilder.Entity("Zekavit_Shared.Entity.Product", b =>
                 {
                     b.HasOne("Zekavit_Shared.Entity.Category", "Category")
@@ -500,11 +490,22 @@ namespace Zekavit_MVC.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Zekavit_Shared.Entity.Order", null)
+                        .WithMany("Products")
+                        .HasForeignKey("OrderId");
+
                     b.Navigation("Category");
                 });
 
             modelBuilder.Entity("Zekavit_Shared.Entity.Category", b =>
                 {
+                    b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("Zekavit_Shared.Entity.Order", b =>
+                {
+                    b.Navigation("Orders");
+
                     b.Navigation("Products");
                 });
 

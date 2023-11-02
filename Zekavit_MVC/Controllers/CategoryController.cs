@@ -1,9 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Zekavit_MVC.Services.Abstract;
 using Zekavit_Shared.DTO;
 
 namespace Zekavit_MVC.Controllers
 {
+
+
+    [Authorize(Roles="Admin")]
     public class CategoryController : Controller
     {
 
@@ -15,7 +19,7 @@ namespace Zekavit_MVC.Controllers
         }
 
 
-
+        [HttpGet("Categories")]
 
 
         public async Task<IActionResult> Index()
@@ -43,6 +47,40 @@ namespace Zekavit_MVC.Controllers
                 return RedirectToAction("Index", "Category");
             }
             return View();
+        }
+
+
+        [HttpPost("CategoryUpdate/{categoryId}")]
+        public async Task<IActionResult> UpdateCategory([FromRoute]int categoryId)
+        {
+            var category = await _categoryService.GetCategory(categoryId);
+            if(category == null) 
+            {
+                return View();
+            }
+            return View(category.Data);
+        }
+
+
+        [HttpPost("Edit/{categoryId}")]
+        public async Task<IActionResult> EditCategory([FromRoute]int categoryId,CategoryDTO model)
+        {
+            var result = await _categoryService.UpdateCategory(categoryId, model);
+            if (result.Success == true) 
+            {
+                return RedirectToAction("Index", "Category");
+            }
+            return View();
+        }
+
+        [HttpPost("{categoryId}")]
+        public async Task<IActionResult> DeleteCategory([FromRoute]int categoryId)
+        { var result = await _categoryService.DeleteCategory(categoryId);
+            if (result.Success == true)
+            {
+                return RedirectToAction("Index", "Category");
+            }
+            return BadRequest("Hata Oluştu");
         }
     }
 }

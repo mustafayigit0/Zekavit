@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Zekavit_MVC.Areas.Identity.Data;
 
@@ -11,9 +12,11 @@ using Zekavit_MVC.Areas.Identity.Data;
 namespace Zekavit_MVC.Migrations
 {
     [DbContext(typeof(Zekavit_MVCContext))]
-    partial class Zekavit_MVCContextModelSnapshot : ModelSnapshot
+    [Migration("20231102062441_mig4")]
+    partial class mig4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -23,4 +23,7 @@ public class Zekavit_MVCContext : IdentityDbContext<ApplicationUser>
 
     public DbSet <Category> Categories { get; set; }
     public DbSet <Product> Products { get; set; }
+    public DbSet <ProductImage> ProductImages { get; set; }
+    public DbSet <Feature> Features { get; set; }
+    public DbSet <Order> Orders { get; set; }
 }
